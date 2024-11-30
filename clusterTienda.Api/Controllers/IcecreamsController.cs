@@ -19,7 +19,8 @@ namespace clusterTienda.Api.Controllers
         [HttpGet] //Metodo get
         public async Task<IActionResult> GetAsync()
         {
-            return Ok(await dataContext.Icecreams.ToListAsync());
+            var icecreams = await dataContext.Icecreams.Include(i => i.Store).ToListAsync();
+            return Ok(icecreams);
         }
 
         [HttpGet("id:int")] //Metodo get pero con un id

@@ -18,8 +18,6 @@ namespace clusterTienda.Shared.Entities
         public string Address { get; set; } = null!;
         public string Location { get; set; } = null!;
 
-        public ICollection<Icecream> Icecreams { get; set; } = null!;
-
 
     }
 }

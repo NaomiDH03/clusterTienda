@@ -14,8 +14,8 @@ namespace clusterTienda.Shared.Entities
         [MaxLength(100, ErrorMessage = "El campo{0} debe tener máximo {1} caracteres ")]
         //Nota: El required y MaxLenght solo afecta a la propiedad siguiente, o sea, Flavour
         [Display(Name = "Helado")]
-        public string Flavour { get; set; } = null!;
-        public string Description { get; set; } = null!;
+        public string Flavour { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
         public float Price { get; set; }
 
     }

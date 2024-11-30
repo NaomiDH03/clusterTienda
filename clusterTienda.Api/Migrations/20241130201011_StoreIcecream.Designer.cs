@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using clusterTienda.Api;
 
@@ -10,9 +11,11 @@ using clusterTienda.Api;
 namespace clusterTienda.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20241130201011_StoreIcecream")]
+    partial class StoreIcecream
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,32 +23,6 @@ namespace clusterTienda.Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("clusterTienda.Shared.Entities.Client", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("IcecreamId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("telephone")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IcecreamId");
-
-                    b.ToTable("Clients");
-                });
 
             modelBuilder.Entity("clusterTienda.Shared.Entities.Icecream", b =>
                 {
@@ -106,31 +83,15 @@ namespace clusterTienda.Api.Migrations
                     b.ToTable("Stores");
                 });
 
-            modelBuilder.Entity("clusterTienda.Shared.Entities.Client", b =>
-                {
-                    b.HasOne("clusterTienda.Shared.Entities.Icecream", "Icecream")
-                        .WithMany()
-                        .HasForeignKey("IcecreamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Icecream");
-                });
-
             modelBuilder.Entity("clusterTienda.Shared.Entities.Icecream", b =>
                 {
                     b.HasOne("clusterTienda.Shared.Entities.Store", "Store")
-                        .WithMany("Icecreams")
+                        .WithMany()
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Store");
-                });
-
-            modelBuilder.Entity("clusterTienda.Shared.Entities.Store", b =>
-                {
-                    b.Navigation("Icecreams");
                 });
 #pragma warning restore 612, 618
         }

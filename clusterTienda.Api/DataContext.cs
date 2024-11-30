@@ -7,6 +7,7 @@ namespace clusterTienda.Api
     {
         public DbSet<Store> Stores { get; set;}
         public DbSet<Icecream> Icecreams { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
         public DataContext(DbContextOptions<DataContext> dbContext) : base(dbContext)
         {

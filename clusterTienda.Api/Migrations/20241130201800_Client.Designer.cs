@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using clusterTienda.Api;
 
@@ -10,9 +11,11 @@ using clusterTienda.Api;
 namespace clusterTienda.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20241130201800_Client")]
+    partial class Client
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,17 +123,12 @@ namespace clusterTienda.Api.Migrations
             modelBuilder.Entity("clusterTienda.Shared.Entities.Icecream", b =>
                 {
                     b.HasOne("clusterTienda.Shared.Entities.Store", "Store")
-                        .WithMany("Icecreams")
+                        .WithMany()
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Store");
-                });
-
-            modelBuilder.Entity("clusterTienda.Shared.Entities.Store", b =>
-                {
-                    b.Navigation("Icecreams");
                 });
 #pragma warning restore 612, 618
         }
